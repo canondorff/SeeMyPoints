@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeeMyPoints"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" Height="650" Width="1000">
+    <DockPanel>
+        <!-- Barre de Navigation --> 
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="LightGray">
+            <Button Content="DashBoard" Click="NavigateToPage1" Margin="5"/> 
+            <Button Content="Journées" Click="NavigateToPage2" Margin="5"/>
+            <Button Content="Epreuves" Click="NavigateToPage3" Margin="5"/>
+            <Button Content="Eleves" Click="NavigateToPage4" Margin="5"/>
+            <Button Content="Equipes" Click="NavigateToPage5" Margin="5"/>
+            <Button Content="Résultats" Click="NavigateToPage6" Margin="5"/>
+            <Button Content="Leaderboard" Click="NavigateToPage7" Margin="5"/>
+        </StackPanel> 
+        
+        <!-- Contenu Principal --> 
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/> 
+    </DockPanel>
 </Window>
