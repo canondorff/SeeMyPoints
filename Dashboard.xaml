@@ -5,8 +5,50 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SeeMyPoints"
       mc:Ignorable="d"
-      Title="Dashboard" MinHeight="650" HorizontalAlignment="Stretch" MinWidth="900" VerticalAlignment="Stretch">
-    <Grid>
-        
+      Title="Dashboard" MinHeight="947" HorizontalAlignment="Stretch" MinWidth="1204" VerticalAlignment="Stretch">
+    <Grid Margin="26,47,37,47">
+        <Grid.ColumnDefinitions>
+            <!-- Colonnes pour les cases du haut -->
+            <ColumnDefinition Width="281" />  <!-- Case 1 largeur -->
+            <ColumnDefinition Width="33" />   <!-- Espacement entre Case 1 et Case 2 -->
+            <ColumnDefinition Width="384" />  <!-- Case 2 largeur -->
+            <ColumnDefinition Width="32" />   <!-- Espacement entre Case 2 et Case 3 -->
+            <ColumnDefinition Width="411" />  <!-- Case 3 largeur -->
+
+            <!-- Colonnes pour les cases du bas -->
+            <ColumnDefinition Width="534" />  <!-- Case 4 largeur -->
+            <ColumnDefinition Width="26" />   <!-- Espacement entre Case 4 et Case 5 -->
+            <ColumnDefinition Width="581" />  <!-- Case 5 largeur -->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="257" />  <!-- Hauteur des cases du haut -->
+            <RowDefinition Height="21" />   <!-- Espacement entre les cases du haut et celles du bas -->
+            <RowDefinition Height="574" />  <!-- Hauteur des cases du bas -->
+        </Grid.RowDefinitions>
+
+        <!-- Case 1 : Haut gauche -->
+        <Border Grid.Column="0" Grid.Row="0" CornerRadius="10" Background="#111313">
+            <StackPanel></StackPanel>
+        </Border>
+
+        <!-- Case 2 : Haut milieu -->
+        <Border Grid.Column="2" Grid.Row="0" CornerRadius="10" Background="#111313">
+            <StackPanel></StackPanel>
+        </Border>
+
+        <!-- Case 3 : Haut droite -->
+        <Border Grid.Column="4" Grid.Row="0" CornerRadius="10" Background="#111313">
+            <StackPanel></StackPanel>
+        </Border>
+
+        <!-- Case 4 : Bas gauche -->
+        <Border Grid.Column="0" Grid.Row="2" CornerRadius="10" Background="#111313">
+            <StackPanel></StackPanel>
+        </Border>
+
+        <!-- Case 5 : Bas droite -->
+        <Border Grid.Column="2" Grid.Row="2" CornerRadius="10" Background="#111313">
+            <StackPanel></StackPanel>
+        </Border>
     </Grid>
 </Page>

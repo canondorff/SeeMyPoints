@@ -7,6 +7,6 @@
       mc:Ignorable="d"
       Title="Leaderboard" MinHeight="650" HorizontalAlignment="Stretch" MinWidth="900" VerticalAlignment="Stretch">
     <Grid>
-        
+        <TextBlock Text="Bonjour 2"></TextBlock>
     </Grid>
 </Page>

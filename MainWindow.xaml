@@ -5,20 +5,117 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeeMyPoints"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000">
+        Title="MainWindow" MaxHeight="1024" MaxWidth="1440"
+        WindowStyle="None" AllowsTransparency="True" Background="#1D2020">
+
     <DockPanel>
-        <!-- Barre de Navigation --> 
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="LightGray">
-            <Button Content="DashBoard" Click="NavigateToPage1" Margin="5"/> 
-            <Button Content="Journées" Click="NavigateToPage2" Margin="5"/>
-            <Button Content="Epreuves" Click="NavigateToPage3" Margin="5"/>
-            <Button Content="Eleves" Click="NavigateToPage4" Margin="5"/>
-            <Button Content="Equipes" Click="NavigateToPage5" Margin="5"/>
-            <Button Content="Résultats" Click="NavigateToPage6" Margin="5"/>
-            <Button Content="Leaderboard" Click="NavigateToPage7" Margin="5"/>
-        </StackPanel> 
-        
-        <!-- Contenu Principal --> 
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/> 
+
+        <!-- Barre de Titre Personnalisée -->
+        <Grid DockPanel.Dock="Top" Background="#111313" Height="50" MouseDown="TitleBar_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White" FontWeight="ExtraBold" FontSize="16">SeeMyPoints</TextBlock>
+            <Button Grid.Column="1" Content="_" Width="50" Style="{StaticResource CustomButtonStyleToolBar}" Click="MinimizeWindow" />
+            <Button Grid.Column="2" Content="□" Width="50" Style="{StaticResource CustomButtonStyleToolBar}" Click="MaximizeWindow" />
+            <Button Grid.Column="3" Content="X" Width="50" Style="{StaticResource CustomButtonStyleToolBar}" Click="CloseWindow" />
+        </Grid>
+
+        <!-- Barre de Navigation -->
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="#111313" Width="185">
+            <TextBlock Text="Menu" Foreground="#444444" Margin="12, 20, 0, 0" FontSize="20" FontWeight="Bold"></TextBlock>
+            <ToggleButton Style="{StaticResource StyleNavBarBtn}" Click="NavigateToPage1" Margin="5" IsChecked="{Binding IsDashboardSelected, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" Margin="0, 0, 5, 0">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="pack://application:,,,/Icones/clair/dashboard-logo-clair.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/Icones/sombre/dashboard-logo-sombre.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="Dashboard" FontSize="20" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Style="{StaticResource StyleNavBarBtn}" Click="NavigateToPage2" Margin="5" IsChecked="{Binding IsJourneesSelected, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" Margin="0, 0, 5, 0">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="pack://application:,,,/Icones/clair/jour-logo-clair.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/Icones/sombre/jour-logo-sombre.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="Journées" FontSize="20" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Style="{StaticResource StyleNavBarBtn}" Click="NavigateToPage3" Margin="5" IsChecked="{Binding IsEpreuvesSelected, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" Margin="0, 0, 5, 0">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="pack://application:,,,/Icones/clair/epreuve-logo-clair.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/Icones/sombre/epreuve-logo-sombre.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="Epreuves" FontSize="20" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Style="{StaticResource StyleNavBarBtn}" Click="NavigateToPage4" Margin="5" IsChecked="{Binding IsEquipesSelected, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" Margin="0, 0, 5, 0">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="pack://application:,,,/Icones/clair/equipe-logo-clair.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/Icones/sombre/equipe-logo-sombre.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="Equipes" FontSize="20" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Style="{StaticResource StyleNavBarBtn}" Click="NavigateToPage5" Margin="5" IsChecked="{Binding IsLeaderboardSelected, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" Margin="0, 0, 5, 0">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="pack://application:,,,/Icones/clair/leaderboard-logo-clair.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/Icones/sombre/leaderboard-logo-sombre.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="Leaderboard" FontSize="20" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+            </ToggleButton>
+        </StackPanel>
+
+        <!-- Contenu Principal -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+
     </DockPanel>
 </Window>

@@ -13,4 +13,33 @@
       <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Icones\dashboard-logo.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Icones\clair\dashboard-logo-clair.png" />
+      <Resource Include="Icones\clair\dashboard-logo-clair.png" />
+      <None Remove="Icones\clair\epreuve-logo-clair.png" />
+      <Resource Include="Icones\clair\epreuve-logo-clair.png" />
+      <None Remove="Icones\clair\equipe-logo-clair.png" />
+      <Resource Include="Icones\clair\equipe-logo-clair.png" />
+      <None Remove="Icones\clair\jour-logo-clair.png" />
+      <Resource Include="Icones\clair\jour-logo-clair.png" />
+      <None Remove="Icones\clair\leaderboard-logo-clair.png" />
+      <Resource Include="Icones\clair\leaderboard-logo-clair.png" />
+      <None Remove="Icones\sombre\dashboard-logo-sombre.png" />
+      <Resource Include="Icones\sombre\dashboard-logo-sombre.png" />
+      <None Remove="Icones\sombre\epreuve-logo-sombre.png" />
+      <Resource Include="Icones\sombre\epreuve-logo-sombre.png" />
+      <None Remove="Icones\sombre\equipe-logo-sombre.png" />
+      <Resource Include="Icones\sombre\equipe-logo-sombre.png" />
+      <None Remove="Icones\sombre\fleche-logo.png" />
+      <Resource Include="Icones\sombre\fleche-logo.png" />
+      <None Remove="Icones\sombre\jour-logo-sombre.png" />
+      <Resource Include="Icones\sombre\jour-logo-sombre.png" />
+      <None Remove="Icones\sombre\leaderboard-logo-sombre.png" />
+      <Resource Include="Icones\sombre\leaderboard-logo-sombre.png" />
+    </ItemGroup>
+
 </Project>
