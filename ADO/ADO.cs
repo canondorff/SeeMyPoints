@@ -5,8 +5,7 @@ namespace SeeMyPoints;
 
 public abstract class ADO
 {
-    static string connectionString = @"Data Source=WIN-10L382S9TJE;Initial Catalog=bd_alpha;Integrated Security=SSPI;";
-    // static string connectionString = @"Data Source=DESKTOP-PT0UKEB;Initial Catalog=SeeMyPoints;User ID=root;Password=admin123;";
+    static string connectionString = @"Data Source=PC_JULIEN;Initial Catalog=SeeMyPoints;User ID=root;Password=Admin123;";
     public static SqlConnection cnn = new SqlConnection(connectionString);
     
     public static void OpenSqlConnection()

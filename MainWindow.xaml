@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeeMyPoints"
         mc:Ignorable="d"
-        Title="MainWindow" MaxHeight="1024" MaxWidth="1440"
-        WindowStyle="None" AllowsTransparency="True" Background="#1D2020">
+        Title="MainWindow"
+        WindowStyle="None" AllowsTransparency="True" Background="#1D2020"
+        WindowState="Maximized"
+        ResizeMode="CanResizeWithGrip"
+        SizeToContent="Manual">
 
     <DockPanel>
 

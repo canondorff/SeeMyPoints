@@ -5,50 +5,132 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SeeMyPoints"
       mc:Ignorable="d"
-      Title="Dashboard" MinHeight="947" HorizontalAlignment="Stretch" MinWidth="1204" VerticalAlignment="Stretch">
-    <Grid Margin="26,47,37,47">
-        <Grid.ColumnDefinitions>
-            <!-- Colonnes pour les cases du haut -->
-            <ColumnDefinition Width="281" />  <!-- Case 1 largeur -->
-            <ColumnDefinition Width="33" />   <!-- Espacement entre Case 1 et Case 2 -->
-            <ColumnDefinition Width="384" />  <!-- Case 2 largeur -->
-            <ColumnDefinition Width="32" />   <!-- Espacement entre Case 2 et Case 3 -->
-            <ColumnDefinition Width="411" />  <!-- Case 3 largeur -->
+      Title="Dashboard">
+    
+    <!-- Le Viewbox permet de redimensionner le Canvas en fonction de la taille de la fenêtre -->
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Canvas Width="1204" Height="947">
 
-            <!-- Colonnes pour les cases du bas -->
-            <ColumnDefinition Width="534" />  <!-- Case 4 largeur -->
-            <ColumnDefinition Width="26" />   <!-- Espacement entre Case 4 et Case 5 -->
-            <ColumnDefinition Width="581" />  <!-- Case 5 largeur -->
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="257" />  <!-- Hauteur des cases du haut -->
-            <RowDefinition Height="21" />   <!-- Espacement entre les cases du haut et celles du bas -->
-            <RowDefinition Height="574" />  <!-- Hauteur des cases du bas -->
-        </Grid.RowDefinitions>
+            <!-- Case 1 : Haut gauche -->
+            <Border Width="281" Height="257" Canvas.Left="26" Canvas.Top="47" CornerRadius="10" Background="#111313">
+                <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock Text="Score" Foreground="#ABFF9A" FontSize="16" FontWeight="Bold" Canvas.Left="12" Canvas.Top="14"/>
+                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Right="10" Canvas.Top="8">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="pack://application:,,,/Icones/sombre/Vue_sombre.png" Height="24" Width="24"/>
+                            <TextBlock Text="Vue complète"/>
+                        </StackPanel>
+                    </Button>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Bottom="142" Canvas.Right="34">
+                        <TextBlock Text="Equipe :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <ComboBox Name="ListEquipePoints" ItemsSource="{Binding EquipesListes}" DisplayMemberPath="NomEquipe" SelectionChanged="ComboBox_SelectionChanged" Width="160" Height="35" Style="{StaticResource StyleDashCombo}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Bottom="93" Canvas.Right="34">
+                        <TextBlock Text="Points :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <TextBox Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                    </StackPanel>
+                    <Button Style="{StaticResource StyleDashBtn}" Content="Ajouter les points" Canvas.Right="21" Canvas.Bottom="18"/>
+                </Canvas>
+            </Border>
 
-        <!-- Case 1 : Haut gauche -->
-        <Border Grid.Column="0" Grid.Row="0" CornerRadius="10" Background="#111313">
-            <StackPanel></StackPanel>
-        </Border>
+            <!-- Case 2 : Haut milieu -->
+            <Border Width="384" Height="257" Canvas.Left="340" Canvas.Top="47" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="120" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="élèves enregistrés - Preview" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="63">
+                        <Image Source="pack://application:,,,/Icones/sombre/sync_sombre.png" Height="24" Width="24"/>
+                    </Button>
+                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16">
+                        <Image Source="pack://application:,,,/Icones/sombre/Vue_sombre.png" Height="24" Width="24"/>
+                    </Button>
+                    <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid x:Name="elevesDataGrid"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  CanUserAddRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserResizeRows="False"
+                                  Width="366"
+                                  Style="{StaticResource StyledDataGrid}"
+                                  ItemsSource="{Binding teams}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                                <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Canvas>
+            </Border>
 
-        <!-- Case 2 : Haut milieu -->
-        <Border Grid.Column="2" Grid.Row="0" CornerRadius="10" Background="#111313">
-            <StackPanel></StackPanel>
-        </Border>
+            <!-- Case 3 : Haut droite -->
+            <Border Width="411" Height="257" Canvas.Left="756" Canvas.Top="47" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Equipe - Preview" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid x:Name="EquipeDataGrid"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  CanUserAddRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserResizeRows="False"
+                                  Width="393"
+                                  Style="{StaticResource StyledDataGrid}"
+                                  ItemsSource="{Binding EquipesListes}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nom d'équipe" Binding="{Binding NomEquipe}" Width="*"/>
+                                <DataGridTextColumn Header="Score" Binding="{Binding Score}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Canvas>
+            </Border>
 
-        <!-- Case 3 : Haut droite -->
-        <Border Grid.Column="4" Grid.Row="0" CornerRadius="10" Background="#111313">
-            <StackPanel></StackPanel>
-        </Border>
+            <!-- Case 4 : Bas gauche -->
+            <Border Width="534" Height="574" Canvas.Left="26" Canvas.Top="325" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Epreuve - Preview" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid x:Name="EpreuveDataGrid"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  CanUserAddRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserResizeRows="False"
+                                  Width="508"
+                                  Style="{StaticResource StyledDataGrid}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nom d'épreuve" Width="*"/>
+                                <DataGridTextColumn Header="Description" Width="*"/>
+                                <DataGridTextColumn Header="Journée" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Canvas>
+            </Border>
 
-        <!-- Case 4 : Bas gauche -->
-        <Border Grid.Column="0" Grid.Row="2" CornerRadius="10" Background="#111313">
-            <StackPanel></StackPanel>
-        </Border>
-
-        <!-- Case 5 : Bas droite -->
-        <Border Grid.Column="2" Grid.Row="2" CornerRadius="10" Background="#111313">
-            <StackPanel></StackPanel>
-        </Border>
-    </Grid>
+            <!-- Case 5 : Bas droite -->
+            <Border Width="581" Height="574" Canvas.Left="586" Canvas.Top="325" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Journée - Preview" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <DataGrid x:Name="JourneeDataGrid"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  CanUserAddRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserResizeRows="False"
+                                  Width="566"
+                                  Style="{StaticResource StyledDataGrid}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nom de journée" Width="*"/>
+                                <DataGridTextColumn Header="Lieu" Width="*"/>
+                                <DataGridTextColumn Header="Date" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Canvas>
+            </Border>
+        </Canvas>
+    </Viewbox>
 </Page>

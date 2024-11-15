@@ -73,5 +73,204 @@
             </Style.Triggers>
         </Style>
         
+        <!-- ControlTemplate and style for dash buttons -->
+        <ControlTemplate x:Key="DashBtn" TargetType="Button">
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="5"
+                    Padding="{TemplateBinding Padding}">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <Style x:Key="StyleDashBtn" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource DashBtn}"/>
+            <Setter Property="Background" Value="#ABFF9A"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="5,6 , 5, 6"/>
+        </Style>
+        
+        <!-- ControlTemplate for dash TextBox -->
+        <ControlTemplate x:Key="DashTextBox" TargetType="TextBox">
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="5"
+                    Padding="{TemplateBinding Padding}">
+                <!-- ScrollViewer nécessaire pour afficher le texte et gérer le focus -->
+                <ScrollViewer x:Name="PART_ContentHost" 
+                              Padding="{TemplateBinding Padding}"
+                              HorizontalAlignment="Center" 
+                              VerticalAlignment="Center" 
+                              Focusable="True" />
+            </Border>
+        </ControlTemplate>
+        <!-- Style pour dash TextBox -->
+        <Style x:Key="StyleDashTextBox" TargetType="TextBox">
+            <Setter Property="Template" Value="{StaticResource DashTextBox}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="#303030" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <!-- Indicateur visuel pour le focus -->
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#9AE1FF" /> <!-- Couleur de bordure pour le focus -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- style for Dash ComboBox -->
+        <!-- ControlTemplate for dash ComboBox -->
+        <ControlTemplate x:Key="DashCombo" TargetType="ComboBox">
+            <!-- Border englobant avec Coin Arrondi appliqué -->
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="5">
+                <Grid>
+                    <!-- ToggleButton pour ouvrir la liste déroulante -->
+                    <ToggleButton x:Name="ToggleButton"
+                                  Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                  BorderThickness="0"
+                                  IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                  ClickMode="Press">
+                        <!-- TextBlock pour afficher l'élément sélectionné avec la couleur Foreground -->
+                        <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                          HorizontalAlignment="Left" 
+                                          VerticalAlignment="Center"
+                                          Margin="5">
+                            <ContentPresenter.ContentTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" 
+                                               Foreground="White" /> <!-- Foreground direct ici -->
+                                </DataTemplate>
+                            </ContentPresenter.ContentTemplate>
+                        </ContentPresenter>
+                    </ToggleButton>
+
+                    <!-- Popup pour le menu déroulant -->
+                    <Popup x:Name="PART_Popup" 
+                           Placement="Bottom" 
+                           IsOpen="{TemplateBinding IsDropDownOpen}" 
+                           AllowsTransparency="True"
+                           Focusable="False">
+                        <!-- Liste déroulante avec coins arrondis -->
+                        <Border Background="#111313"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1"
+                                CornerRadius="5">
+                            <ScrollViewer>
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </Border>
+
+            <!-- Trigger pour désactiver la couleur de survol -->
+            <ControlTemplate.Triggers>
+                <Trigger SourceName="ToggleButton" Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Background" TargetName="ToggleButton" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- Style pour dash ComboBox -->
+        <Style x:Key="StyleDashCombo" TargetType="ComboBox">
+            <Setter Property="Template" Value="{StaticResource DashCombo}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="#303030" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        
+        
+        <!-- Style pour centrer le contenu des cellules dans le DataGrid -->
+        <Style TargetType="DataGridCell" x:Key="CenteredDataGridCell">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0"/>
+        </Style>
+        
+        <!-- Style pour le DataGrid avec cellules centrées -->
+        <Style TargetType="DataGrid" x:Key="StyledDataGrid">
+            <Setter Property="Background" Value="#111313"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#303030"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="Transparent"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            
+            <!-- Style des en-têtes de colonnes -->
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#111313"/>
+                        <Setter Property="Foreground" Value="#ABABAB"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="#303030"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            
+            <!-- Applique le style centré aux cellules -->
+            <Setter Property="CellStyle" Value="{StaticResource CenteredDataGridCell}"/>
+        </Style>
+
+        <!-- Style pour les boutons d'action dans les cellules -->
+        <Style TargetType="Button" x:Key="ActionButtonStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="BorderBrush" Value="#404040"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="3"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#007ACC" />
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

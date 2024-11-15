@@ -19,27 +19,30 @@ public class ADOEleve : ADO
         closeSqlConnection();
     }
     
-    public static Eleve getAllEleve()
+    public static List<Eleve> GetAllEleves()
+    {
+        OpenSqlConnection();
+        SqlCommand command;
+        SqlDataAdapter adapter = new SqlDataAdapter();
+        string sql = "SELECT * FROM Eleve";
+        command = new SqlCommand(sql, cnn);
+        List<Eleve> eleves = new List<Eleve>();
+
+        using (SqlDataReader reader = command.ExecuteReader())
         {
-            OpenSqlConnection();
-            SqlCommand command;
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            string sql = "SELECT * FROM Eleve";
-            command = new SqlCommand(sql, cnn);
-            Eleve eleve = null;
-            using (SqlDataReader reader = command.ExecuteReader())
+            while (reader.Read())
             {
-                if (reader.Read())
-                {
-                    string nom = reader["nom_eleve"].ToString();
-                    string classe = reader["classe"].ToString();
-                    eleve = new Eleve(nom, classe);
-                }
+                string nom = reader["nom_eleve"].ToString();
+                string classe = reader["classe"].ToString();
+                Eleve eleve = new Eleve(nom, classe);
+                eleves.Add(eleve);
             }
-            command.Dispose();
-            closeSqlConnection();
-            return eleve;
         }
+
+        command.Dispose();
+        closeSqlConnection();
+        return eleves;
+    }
         
         public static Eleve getEleve(int id_eleve)
         {

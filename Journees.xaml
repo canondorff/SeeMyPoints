@@ -6,7 +6,22 @@
       xmlns:local="clr-namespace:SeeMyPoints"
       mc:Ignorable="d"
       Title="Journee" MinHeight="650" HorizontalAlignment="Stretch" MinWidth="900" VerticalAlignment="Stretch">
-    <Grid>
-        
-    </Grid>
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Canvas Width="1204" Height="947">
+            <!-- Case 1 : Gauche -->
+            <Border Width="807" Height="897" Canvas.Left="22" Canvas.Top="24" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Journées" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    
+                </Canvas>
+            </Border>
+            <!-- Case 2 : Droiteroite -->
+            <Border Width="341" Height="549" Canvas.Right="13" Canvas.Top="24" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Ajouter une journée" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    
+                </Canvas>
+            </Border>
+        </Canvas>
+    </Viewbox>
 </Page>

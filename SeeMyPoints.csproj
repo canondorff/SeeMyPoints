@@ -40,6 +40,11 @@
       <Resource Include="Icones\sombre\jour-logo-sombre.png" />
       <None Remove="Icones\sombre\leaderboard-logo-sombre.png" />
       <Resource Include="Icones\sombre\leaderboard-logo-sombre.png" />
+      <Resource Include="Icones\sombre\Vue_complete_sombre.png" />
+      <None Remove="Icones\sombre\sync_sombre.png" />
+      <Resource Include="Icones\sombre\sync_sombre.png" />
+      <None Remove="Icones\sombre\Vue_sombre.png" />
+      <Resource Include="Icones\sombre\Vue_sombre.png" />
     </ItemGroup>
 
 </Project>
