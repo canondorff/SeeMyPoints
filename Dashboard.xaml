@@ -23,7 +23,7 @@
                     </Button>
                     <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Bottom="142" Canvas.Right="34">
                         <TextBlock Text="Equipe :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
-                        <ComboBox Name="ListEquipePoints" ItemsSource="{Binding EquipesListes}" DisplayMemberPath="NomEquipe" SelectionChanged="ComboBox_SelectionChanged" Width="160" Height="35" Style="{StaticResource StyleDashCombo}"></ComboBox>
+                        <ComboBox Name="ListEquipePoints" Width="160" Height="35" Style="{StaticResource StyleDashCombo}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Bottom="93" Canvas.Right="34">
                         <TextBlock Text="Points :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
@@ -75,11 +75,10 @@
                                   CanUserResizeColumns="False"
                                   CanUserResizeRows="False"
                                   Width="393"
-                                  Style="{StaticResource StyledDataGrid}"
-                                  ItemsSource="{Binding EquipesListes}">
+                                  Style="{StaticResource StyledDataGrid}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom d'équipe" Binding="{Binding NomEquipe}" Width="*"/>
-                                <DataGridTextColumn Header="Score" Binding="{Binding Score}" Width="*"/>
+                                <DataGridTextColumn Header="Nom d'équipe" Width="*"/>
+                                <DataGridTextColumn Header="Score" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

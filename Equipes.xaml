@@ -5,8 +5,83 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SeeMyPoints"
       mc:Ignorable="d"
-      Title="Equipes" MinHeight="650" HorizontalAlignment="Stretch" MinWidth="900" VerticalAlignment="Stretch">
-    <Grid>
+      Title="Equipes">
+    
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Canvas Width="1204" Height="947">
+            <!-- Case 1 : Gauche -->
+            <Border Width="807" Height="897" Canvas.Left="22" Canvas.Top="24" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Equipes" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <DataGrid Style="{StaticResource StyledDataGrid}" Canvas.Left="13" Canvas.Top="61" Width="781">
+                        <!-- Définition des colonnes -->
+                        <DataGrid.Columns>
+                            <!-- Colonne Nom de journée -->
+                            <DataGridTextColumn Header="Nom d'éq" Binding="{Binding NomJournee}" Width="*"/>
         
-    </Grid>
+                            <!-- Colonne Lieu -->
+                            <DataGridTextColumn Header="Score" Binding="{Binding Lieu}" Width="*"/>
+        
+                            <!-- Colonne Date -->
+                            <DataGridTextColumn Header="Journée" Binding="{Binding Date}" Width="*"/>
+                            
+                            <!-- Colonne Eleve avec boutons -->
+                            <DataGridTemplateColumn Header="Liste d'élèves" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            <!-- Colonne Epreuve avec boutons -->
+                            <DataGridTemplateColumn Header="Epreuve" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            <!-- Colonne Action avec boutons -->
+                            <DataGridTemplateColumn Header="Action" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <!-- Bouton Modifier -->
+                                            <Button Style="{StaticResource ActionButtonStyle}" Content="Modifier" Command="{Binding ModifierCommand}"/>
+                        
+                                            <!-- Bouton Ajouter Epr -->
+                                            <Button Style="{StaticResource ActionButtonStyle}" Content="Ajouter Epr" Command="{Binding AjouterEprCommand}"/>
+                        
+                                            <!-- Bouton Supprimer -->
+                                            <Button Style="{StaticResource ActionButtonStyle}" Content="Supprimer" Command="{Binding SupprimerCommand}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Canvas>
+            </Border>
+            
+            <!-- Case 2 : Droiteroite -->
+            <Border Width="341" Height="243" Canvas.Right="13" Canvas.Top="24" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Ajouter une équipe" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Top="80" Canvas.Right="10">
+                        <TextBlock Text="Nom de l'équipe :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <TextBox Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Top="132" Canvas.Right="10">
+                        <TextBlock Text="Nombre d'élèves :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <TextBox Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                    </StackPanel>
+                    <Button Content="Ajouter l'équipe" Style="{StaticResource StyleDashBtn}" Canvas.Bottom="16" Canvas.Left="90"/>
+                </Canvas>
+            </Border>
+        </Canvas>
+    </Viewbox>
 </Page>

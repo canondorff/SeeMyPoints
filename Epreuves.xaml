@@ -5,8 +5,68 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SeeMyPoints"
       mc:Ignorable="d"
-      Title="Epreuves" MinHeight="650" HorizontalAlignment="Stretch" MinWidth="900" VerticalAlignment="Stretch">
-    <Grid>
+      Title="Epreuves">
+    
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Canvas Width="1204" Height="947">
+            <!-- Case 1 : Gauche -->
+            <Border Width="807" Height="897" Canvas.Left="22" Canvas.Top="24" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Epreuves" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <DataGrid Style="{StaticResource StyledDataGrid}" Canvas.Left="13" Canvas.Top="61" Width="781">
+                        <!-- Définition des colonnes -->
+                        <DataGrid.Columns>
+                            <!-- Colonne Nom de journée -->
+                            <DataGridTextColumn Header="Nom de l'épreuve" Binding="{Binding NomJournee}" Width="*"/>
         
-    </Grid>
+                            <!-- Colonne Lieu -->
+                            <DataGridTextColumn Header="Description" Binding="{Binding Lieu}" Width="*"/>
+        
+                            <!-- Colonne Date -->
+                            <DataGridTextColumn Header="Journée" Binding="{Binding Date}" Width="*"/>
+
+                            <!-- Colonne Action avec boutons -->
+                            <DataGridTemplateColumn Header="Action" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <!-- Bouton Modifier -->
+                                            <Button Style="{StaticResource ActionButtonStyle}" Content="Modifier" Command="{Binding ModifierCommand}"/>
+                        
+                                            <!-- Bouton Ajouter Epr -->
+                                            <Button Style="{StaticResource ActionButtonStyle}" Content="Ajouter Epr" Command="{Binding AjouterEprCommand}"/>
+                        
+                                            <!-- Bouton Supprimer -->
+                                            <Button Style="{StaticResource ActionButtonStyle}" Content="Supprimer" Command="{Binding SupprimerCommand}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                </Canvas>
+            </Border>
+            
+            <!-- Case 2 : Droiteroite -->
+            <Border Width="341" Height="342" Canvas.Right="13" Canvas.Top="24" CornerRadius="10" Background="#111313">
+                <Canvas>
+                    <TextBlock Text="Ajouter une épreuve" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Top="88" Canvas.Right="10">
+                        <TextBlock Text="Nom de la journée :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <TextBox Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Top="140" Canvas.Right="10">
+                        <TextBlock Text="Lieu de la journée :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <TextBox Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Top="192" Canvas.Right="10">
+                        <TextBlock Text="Lier à une journée :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                        <ComboBox Name="ListEquipePoints" DisplayMemberPath="NomEquipe" Width="160" Height="35" Style="{StaticResource StyleDashCombo}"></ComboBox>
+                    </StackPanel>
+                    <Button Content="Ajouter l'épreuve" Style="{StaticResource StyleDashBtn}" Canvas.Bottom="44" Canvas.Left="90"/>
+                </Canvas>
+            </Border>
+        </Canvas>
+    </Viewbox>
 </Page>
