@@ -4,6 +4,7 @@ public class Epreuve
 {
     string nomEpreuve;
     string descriptionEpreuve;
+    private Dictionary<Equipe, int> equipes;
     
     public Epreuve(string nom, string description)
     {

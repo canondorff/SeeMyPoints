@@ -4,7 +4,8 @@ public class Equipe
 {
     string nomEquipe;
     private int score;
-    private List<Epreuve> Epreuves;
+    private List<Eleves> eleves;
+    Dictionary<Epreuve, int> epreuves;
     
     public Equipe(string nom)
     {

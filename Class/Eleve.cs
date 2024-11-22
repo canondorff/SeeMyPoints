@@ -5,6 +5,7 @@ public class Eleve
     string nomEleve;
     string classeEleve;
     
+    
     public Eleve(string nom, string classe)
     {
         this.nomEleve = nom;

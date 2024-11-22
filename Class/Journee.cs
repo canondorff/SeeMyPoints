@@ -5,6 +5,8 @@ public class Journee
     string nomJournee;
     DateTime dateJournee;
     string lieuJournee;
+    private List<Epreuve> epreuves;
+    private List<Equipe> equipes;
     
     public Journee(string nom, DateTime date, string lieu)
     {
