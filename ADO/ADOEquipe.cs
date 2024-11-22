@@ -33,9 +33,8 @@ public class ADOEquipe : ADO
             while (reader.Read())
             {
                 string nom = reader["nom_equipe"].ToString();
-                int score = Convert.ToInt32(reader["score"]);
-                    ;
-                Equipe equipe = new Equipe(nom, score);
+                int score = Convert.ToInt16(reader["score"]);
+                Equipe equipe = new Equipe(nom);
                 equipes.Add(equipe);
             }
         }
@@ -58,8 +57,7 @@ public class ADOEquipe : ADO
             if (reader.Read())
             {
                 string nom = reader["nom_equipe"].ToString();
-                int score = Convert.ToInt32(reader["score"]);
-                equipe = new Equipe(nom, score);
+                equipe = new Equipe(nom);
             }
         }
         command.Dispose();

@@ -19,15 +19,16 @@ public class ADOEpreuve : ADO
         closeSqlConnection();
     }
     
-    public static Epreuve getAllEpreuve()
+    public static List<Epreuve> getAllEpreuve()
     {
         OpenSqlConnection();
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
-        string sql = "";
-        sql = "SELECT * FROM Epreuve";
+        string sql = "SELECT * FROM Epreuve";
         command = new SqlCommand(sql, cnn);
         Epreuve epreuve = null;
+        List<Epreuve> epreuves = new List<Epreuve>();
+        
         using (SqlDataReader reader = command.ExecuteReader())
         {
             if (reader.Read())
@@ -35,11 +36,12 @@ public class ADOEpreuve : ADO
                 string nom = reader["nom_epreuve"].ToString();
                 string description = reader["desc_epreuve"].ToString();
                 epreuve = new Epreuve(nom, description);
+                epreuves.Add(epreuve);
             }
         }
         command.Dispose();
         closeSqlConnection();
-        return epreuve;
+        return epreuves;
     }
         
     public static Epreuve getEpreuve(int id_epreuve)

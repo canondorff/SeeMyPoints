@@ -19,16 +19,30 @@ public class ADOJournee : ADO
         closeSqlConnection();
     }
     
-    public static void getAllJournee()
+    public static List<Journee> getAllJournee()
     {
         OpenSqlConnection();
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
-        string sql = "";
-        sql = "SELECT * FROM Journee";
+        string sql = "SELECT * FROM Journee";
         command = new SqlCommand(sql, cnn);
+        List<Journee> journees = new List<Journee>();
+
+        using (SqlDataReader reader = command.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                string nom = reader["nom_journee"].ToString();
+                DateTime date = Convert.ToDateTime(reader["dateJournee"]);
+                string lieu = reader["lieu_journee"].ToString();
+                Journee journee = new Journee(nom, date, lieu);
+                journees.Add(journee);
+            }
+        }
+
         command.Dispose();
         closeSqlConnection();
+        return journees;
     }
         
     public static void getJournee(int id_journee)

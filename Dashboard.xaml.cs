@@ -9,10 +9,7 @@ public partial class Dashboard : Page
     public Dashboard()
     {
         InitializeComponent();
-        Equipe equipe = new Equipe("Equipe 2", 5);
-        ADOEquipe.insertEquipe(equipe);
         LoadEleves();
-        LoadEquipes();
         // Assigner la liste au contexte de données pour le DataGrid
         DataContext = this;
     }
@@ -24,12 +21,5 @@ public partial class Dashboard : Page
     
         // Liaison de la liste d'élèves à la source d'éléments du DataGrid
         elevesDataGrid.ItemsSource = eleves;
-    }
-
-    private void LoadEquipes()
-    {
-        List<Equipe> equipes = ADOEquipe.GetAllEquipes();
-        
-        EquipeDataGrid.ItemsSource = equipes;
     }
 }
