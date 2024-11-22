@@ -54,8 +54,8 @@
                                   Width="366"
                                   Style="{StaticResource StyledDataGrid}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
-                                <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
+                                <DataGridTextColumn Header="Nom" Binding="{Binding nom_eleve}" Width="*"/>
+                                <DataGridTextColumn Header="Classe" Binding="{Binding classe}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -67,7 +67,7 @@
                 <Canvas>
                     <TextBlock Text="Equipe - Preview" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                     <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <DataGrid x:Name="EquipeDataGrid"
+                        <DataGrid x:Name="equipeDataGrid"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   CanUserAddRows="False"
@@ -89,7 +89,7 @@
                 <Canvas>
                     <TextBlock Text="Epreuve - Preview" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                     <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <DataGrid x:Name="EpreuveDataGrid"
+                        <DataGrid x:Name="epreuvesDataGrid"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   CanUserAddRows="False"
@@ -112,7 +112,7 @@
                 <Canvas>
                     <TextBlock Text="Journée - Preview" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                     <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <DataGrid x:Name="JourneeDataGrid"
+                        <DataGrid x:Name="journeesDataGrid"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   CanUserAddRows="False"

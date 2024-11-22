@@ -32,9 +32,9 @@ public class ADOEleve : ADO
         {
             while (reader.Read())
             {
-                string nom = reader["nom_eleve"].ToString();
+                string nom_eleve = reader["nom_eleve"].ToString();
                 string classe = reader["classe"].ToString();
-                Eleve eleve = new Eleve(nom, classe);
+                Eleve eleve = new Eleve(nom_eleve, classe);
                 eleves.Add(eleve);
             }
         }
