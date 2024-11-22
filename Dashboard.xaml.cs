@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -51,5 +52,23 @@ public partial class Dashboard : Page
     
         // Liaison de la liste d'élèves à la source d'éléments du DataGrid
         journeesDataGrid.ItemsSource = journees;
+    }
+    
+    private void OpenPopupScore_Click(object sender, RoutedEventArgs e)
+    {
+        PopupScore.IsOpen = true;
+    }
+    private void ClosePopupScore_Click(object sender, RoutedEventArgs e)
+    {
+        PopupScore.IsOpen = false;
+    }
+    
+    private void OpenPopupEleve_Click(object sender, RoutedEventArgs e)
+    {
+        PopupEleve.IsOpen = true;
+    }
+    private void ClosePopupEleve_Click(object sender, RoutedEventArgs e)
+    {
+        PopupEleve.IsOpen = false;
     }
 }
