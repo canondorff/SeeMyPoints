@@ -10,12 +10,46 @@
     <!-- Le Viewbox permet de redimensionner le Canvas en fonction de la taille de la fenêtre -->
     <Viewbox Stretch="Uniform" StretchDirection="Both">
         <Canvas Width="1204" Height="947">
-
+            <!-- Popup -->
+            <Popup Name="PopupScore" StaysOpen="False" Placement="Center" AllowsTransparency="True">
+                <Border Background="#111313" Width="300" Height="200" CornerRadius="10" BorderBrush="#303030" BorderThickness="1">
+                    <Grid>
+                        <TextBlock Text="Ceci est une popup!" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="16"/>
+                        <Button Content="Fermer" Width="80" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" Click="ClosePopupScore_Click"/>
+                    </Grid>
+                </Border>
+            </Popup>
+            <Popup Name="PopupEleve" StaysOpen="False" Placement="Center" AllowsTransparency="True">
+                <Border Background="#111313" Width="500" Height="500" CornerRadius="10" BorderBrush="White" BorderThickness="1">
+                    <Grid>
+                        <Canvas>
+                            <TextBlock Text="120" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="élèves enregistrés - Preview" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                            <Button Content="Fermer" Width="80" Height="30" Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16" Click="ClosePopupEleve_Click"/>
+                            <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <DataGrid x:Name="elevesDataGridFull"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          CanUserAddRows="False"
+                                          CanUserResizeColumns="False"
+                                          CanUserResizeRows="False"
+                                          Width="366"
+                                          Style="{StaticResource StyledDataGrid}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                                        <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Canvas>
+                    </Grid>
+                </Border>
+            </Popup>
             <!-- Case 1 : Haut gauche -->
             <Border Width="281" Height="257" Canvas.Left="26" Canvas.Top="47" CornerRadius="10" Background="#111313">
                 <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock Text="Score" Foreground="#ABFF9A" FontSize="16" FontWeight="Bold" Canvas.Left="12" Canvas.Top="14"/>
-                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Right="10" Canvas.Top="8">
+                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Right="10" Canvas.Top="8" Click="OpenPopupScore_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="pack://application:,,,/Icones/sombre/Vue_sombre.png" Height="24" Width="24"/>
                             <TextBlock Text="Vue complète"/>
@@ -41,7 +75,7 @@
                     <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="63">
                         <Image Source="pack://application:,,,/Icones/sombre/sync_sombre.png" Height="24" Width="24"/>
                     </Button>
-                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16">
+                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16" Click="OpenPopupEleve_Click">
                         <Image Source="pack://application:,,,/Icones/sombre/Vue_sombre.png" Height="24" Width="24"/>
                     </Button>
                     <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
