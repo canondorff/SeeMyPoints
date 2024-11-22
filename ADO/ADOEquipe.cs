@@ -19,26 +19,30 @@ public class ADOEquipe : ADO
         closeSqlConnection();
     }
     
-    public static Equipe getAllEquipe()
+    public static List<Equipe> GetAllEquipes()
     {
         OpenSqlConnection();
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
         string sql = "SELECT * FROM Equipe";
         command = new SqlCommand(sql, cnn);
-        Equipe equipe = null;
+        List<Equipe> equipes = new List<Equipe>();
+
         using (SqlDataReader reader = command.ExecuteReader())
         {
-            if (reader.Read())
+            while (reader.Read())
             {
                 string nom = reader["nom_equipe"].ToString();
                 int score = Convert.ToInt32(reader["score"]);
-                equipe = new Equipe(nom);
+                    ;
+                Equipe equipe = new Equipe(nom, score);
+                equipes.Add(equipe);
             }
         }
+
         command.Dispose();
         closeSqlConnection();
-        return equipe;
+        return equipes;
     }
         
     public static Equipe getEquipe(int id_equipe)
@@ -55,7 +59,7 @@ public class ADOEquipe : ADO
             {
                 string nom = reader["nom_equipe"].ToString();
                 int score = Convert.ToInt32(reader["score"]);
-                equipe = new Equipe(nom);
+                equipe = new Equipe(nom, score);
             }
         }
         command.Dispose();

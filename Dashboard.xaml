@@ -52,8 +52,7 @@
                                   CanUserResizeColumns="False"
                                   CanUserResizeRows="False"
                                   Width="366"
-                                  Style="{StaticResource StyledDataGrid}"
-                                  ItemsSource="{Binding teams}">
+                                  Style="{StaticResource StyledDataGrid}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
                                 <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
@@ -77,8 +76,8 @@
                                   Width="393"
                                   Style="{StaticResource StyledDataGrid}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom d'équipe" Width="*"/>
-                                <DataGridTextColumn Header="Score" Width="*"/>
+                                <DataGridTextColumn Header="Nom d'équipe" Binding="{Binding nom}" Width="*"/>
+                                <DataGridTextColumn Header="Score" Binding="{Binding score}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
