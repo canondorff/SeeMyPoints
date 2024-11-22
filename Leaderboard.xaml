@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="Leaderboard">
     <Canvas Width="1204" Height="947">
-        <Button Content="A" Background="Aqua" Width="50" Height="20" Canvas.Top="5" Canvas.Left="5"></Button>
-        <Button Content="B" Background="Red" Width="50" Height="20" Canvas.Top="100" Canvas.Left="5"></Button>
+        <Button Name="import" Content="A" Background="Aqua" Width="50" Height="20" Canvas.Top="5" Canvas.Left="5" Click="Import_Click"></Button>
+        <Button Name="save" Content="B" Background="Red" Width="50" Height="20" Canvas.Top="100" Canvas.Left="5"></Button>
     </Canvas>
 </Page>
