@@ -24,7 +24,7 @@
                     <Grid>
                         <Canvas>
                             <TextBlock Text="120" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="élèves enregistrés - Preview" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="élèves enregistrés" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                             <Button Content="Fermer" Width="80" Height="30" Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16" Click="ClosePopupEleve_Click"/>
                             <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                                 <DataGrid x:Name="elevesDataGridFull"
@@ -33,11 +33,21 @@
                                           CanUserAddRows="False"
                                           CanUserResizeColumns="False"
                                           CanUserResizeRows="False"
-                                          Width="366"
+                                          Width="482"
                                           Style="{StaticResource StyledDataGrid}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
                                         <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
+                                        <DataGridTemplateColumn Header="Action" Width="*">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <!-- Bouton Supprimer -->
+                                                        <Button Style="{StaticResource ActionButtonStyle}" Content="Supprimer"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -88,8 +98,8 @@
                                   Width="366"
                                   Style="{StaticResource StyledDataGrid}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom" Binding="{Binding nom_eleve}" Width="*"/>
-                                <DataGridTextColumn Header="Classe" Binding="{Binding classe}" Width="*"/>
+                                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                                <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

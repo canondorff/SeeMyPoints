@@ -25,6 +25,7 @@ public partial class Dashboard : Page
     
         // Liaison de la liste d'élèves à la source d'éléments du DataGrid
         elevesDataGrid.ItemsSource = eleves;
+        elevesDataGridFull.ItemsSource = eleves;
     }
     
     private void LoadEquipes()
