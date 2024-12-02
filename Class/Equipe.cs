@@ -24,4 +24,6 @@ public class Equipe
         get => score;
         set => score = value;
     }
+    
+    public override string ToString() { return $"{Nom}: {Score}"; }
 }

@@ -120,8 +120,8 @@
                                   Width="393"
                                   Style="{StaticResource StyledDataGrid}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom d'équipe" Binding="{Binding nom}" Width="*"/>
-                                <DataGridTextColumn Header="Score" Binding="{Binding score}" Width="*"/>
+                                <DataGridTextColumn Header="Nom d'équipe" Binding="{Binding Nom}" Width="*"/>
+                                <DataGridTextColumn Header="Score" Binding="{Binding Score}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

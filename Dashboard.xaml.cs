@@ -32,6 +32,8 @@ public partial class Dashboard : Page
     {
         // Appel de la méthode GetAllEleves pour récupérer la liste des élèves
         List<Equipe> equipes = ADOEquipe.GetAllEquipes();
+      
+        foreach (Equipe element in equipes) { Console.WriteLine(element); }
     
         // Liaison de la liste d'élèves à la source d'éléments du DataGrid
         equipeDataGrid.ItemsSource = equipes;
