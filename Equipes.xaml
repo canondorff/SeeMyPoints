@@ -13,14 +13,14 @@
             <Border Width="807" Height="897" Canvas.Left="22" Canvas.Top="24" CornerRadius="10" Background="#111313">
                 <Canvas>
                     <TextBlock Text="Equipes" Foreground="#ABFF9A" Canvas.Left="13" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
-                    <DataGrid Style="{StaticResource StyledDataGrid}" Canvas.Left="13" Canvas.Top="61" Width="781">
+                    <DataGrid Style="{StaticResource StyledDataGrid}" Canvas.Left="13" Canvas.Top="61" Width="781" x:Name="equipeDataGrid">
                         <!-- Définition des colonnes -->
                         <DataGrid.Columns>
                             <!-- Colonne Nom de journée -->
-                            <DataGridTextColumn Header="Nom d'éq" Binding="{Binding NomJournee}" Width="*"/>
+                            <DataGridTextColumn Header="Nom d'éq" Binding="{Binding Nom}" Width="*"/>
         
                             <!-- Colonne Lieu -->
-                            <DataGridTextColumn Header="Score" Binding="{Binding Lieu}" Width="*"/>
+                            <DataGridTextColumn Header="Score" Binding="{Binding Score}" Width="*"/>
         
                             <!-- Colonne Date -->
                             <DataGridTextColumn Header="Journée" Binding="{Binding Date}" Width="*"/>

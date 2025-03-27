@@ -5,13 +5,13 @@ namespace SeeMyPoints;
 
 public class ADOJournee : ADO
 {
-    public static void insertJournee(string nom_journee, DateTime date_journee, string lieu_journee)
+    public static void insertJournee(Journee journee)
     {
         OpenSqlConnection();
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
         string sql = "";
-        sql = $"INSERT INTO Journee (nom_journee, date_journee, lieu_journee) VALUES ('{nom_journee}', '{date_journee}', '{lieu_journee}')";
+        sql = $"INSERT INTO Journee (nom_journee, date_journee, lieu_journee) VALUES ('{journee.Nom}', '{journee.Date}', '{journee.Lieu}')";
         command = new SqlCommand(sql, cnn);
         adapter.InsertCommand = new SqlCommand(sql, cnn);
         adapter.InsertCommand.ExecuteNonQuery();

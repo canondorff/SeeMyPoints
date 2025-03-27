@@ -19,11 +19,12 @@
                     </Grid>
                 </Border>
             </Popup>
+            <!-- Popup voir élève -->
             <Popup Name="PopupEleve" StaysOpen="False" Placement="Center" AllowsTransparency="True">
                 <Border Background="#111313" Width="500" Height="500" CornerRadius="10" BorderBrush="White" BorderThickness="1">
                     <Grid>
                         <Canvas>
-                            <TextBlock Text="120" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock x:Name="nbElevesPopup" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                             <TextBlock Text="élèves enregistrés" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                             <Button Content="Fermer" Width="80" Height="30" Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16" Click="ClosePopupEleve_Click"/>
                             <Grid Canvas.Top="58" Canvas.Left="9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -55,6 +56,30 @@
                     </Grid>
                 </Border>
             </Popup>
+            <!-- Popup ajout élève -->
+            <Popup Name="PopupAddEleve" StaysOpen="False" Placement="Center" AllowsTransparency="True">
+                <Border Background="#111313" Width="281" Height="257" CornerRadius="10" BorderBrush="White" BorderThickness="1">
+                    <Grid>
+                        <Canvas>
+                            <TextBlock Text="Ajouter un élève" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                            <Button Style="{StaticResource StyleDashBtn}" Canvas.Right="10" Canvas.Top="8" Click="ClosePopupAddEleve_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Fermer"/>
+                                </StackPanel>
+                            </Button>
+                            <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Bottom="142" Canvas.Right="34">
+                                <TextBlock Text="Prénom :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                                <TextBox x:Name="prenomInput" Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal" Canvas.Bottom="93" Canvas.Right="34">
+                                <TextBlock Text="Classe :" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,5,0"></TextBlock>
+                                <TextBox x:Name="classeInput" Width="160" Height="35" Style="{StaticResource StyleDashTextBox}"></TextBox>
+                            </StackPanel>
+                            <Button Style="{StaticResource StyleDashBtn}" Content="Ajouter l'élève" Canvas.Right="21" Canvas.Bottom="18" Click="AjouterEleve_Click"/>
+                        </Canvas>
+                    </Grid>
+                </Border>
+            </Popup>
             <!-- Case 1 : Haut gauche -->
             <Border Width="281" Height="257" Canvas.Left="26" Canvas.Top="47" CornerRadius="10" Background="#111313">
                 <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -80,9 +105,9 @@
             <!-- Case 2 : Haut milieu -->
             <Border Width="384" Height="257" Canvas.Left="340" Canvas.Top="47" CornerRadius="10" Background="#111313">
                 <Canvas>
-                    <TextBlock Text="120" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock x:Name="nbEleves" Foreground="#9AE1FF" Canvas.Left="9" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
                     <TextBlock Text="élèves enregistrés - Preview" Foreground="#ABFF9A" Canvas.Left="44" Canvas.Top="14" FontSize="16" FontWeight="Bold"/>
-                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="63">
+                    <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="63" Click="OpenPopupAddEleve_Click">
                         <Image Source="pack://application:,,,/Icones/sombre/sync_sombre.png" Height="24" Width="24"/>
                     </Button>
                     <Button Style="{StaticResource StyleDashBtn}" Canvas.Top="8" Canvas.Right="16" Click="OpenPopupEleve_Click">
