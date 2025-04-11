@@ -42,6 +42,10 @@ public partial class Dashboard : Page
     
         // Liaison de la liste d'élèves à la source d'éléments du DataGrid
         equipeDataGrid.ItemsSource = equipes;
+        
+        equipeScore.ItemsSource = equipes;
+        equipeScore.DisplayMemberPath = "Nom";
+        equipeScore.SelectedValuePath = "id_equipe";
     }
     
     private void LoadEpreuves()
@@ -91,10 +95,10 @@ public partial class Dashboard : Page
     
     private void AjouterEleve_Click(object sender, RoutedEventArgs e)
     {
-        string nom_eleve = prenomInput.Text;
+        string nomEleve = prenomInput.Text;
         string classe = classeInput.Text;
         
-        Eleve newEleve = new Eleve(nom_eleve, classe);
+        Eleve newEleve = new Eleve(nomEleve, classe);
         
         ADOEleve.insertEleve(newEleve);
         

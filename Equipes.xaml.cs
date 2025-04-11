@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace SeeMyPoints;
 
@@ -21,5 +24,19 @@ public partial class Equipes : Page
     
         // Liaison de la liste d'élèves à la source d'éléments du DataGrid
         equipeDataGrid.ItemsSource = equipes;
+    }
+    
+    private void AjouterEquipe_Click(object sender, RoutedEventArgs e)
+    {
+        string nomEquipe = nomInput.Text;
+        int nbEleve = Convert.ToInt32(nbEleveInput.Text);
+        
+        
+        
+        Equipe newEquipe = new Equipe(nomEquipe);
+        
+        ADOEquipe.insertEquipe(newEquipe);
+        
+        LoadEquipes();
     }
 }
