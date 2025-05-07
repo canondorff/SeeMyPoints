@@ -30,7 +30,6 @@ public partial class Equipes : Page
     {
         string nomEquipe = nomInput.Text;
         int nbEleve = Convert.ToInt32(nbEleveInput.Text);
-        MessageBox.Show(Convert.ToString(nbEleve));
         
         List<Eleve> eleves = ADOEleve.GetAllEleves();
         // Filtrer les élèves qui n'ont pas encore d'équipe
@@ -55,7 +54,6 @@ public partial class Equipes : Page
             var eleveAleatoire = elevesDisponibles[random.Next(elevesDisponibles.Count)];
             if (!elevesSelectionnes.Contains(eleveAleatoire))
             {
-                MessageBox.Show(eleveAleatoire.ToString());
                 elevesSelectionnes.Add(eleveAleatoire);
             }
         }
