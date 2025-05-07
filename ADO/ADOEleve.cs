@@ -33,8 +33,10 @@ public class ADOEleve : ADO
             {
                 string nom_eleve = reader["nom_eleve"].ToString();
                 string classe = reader["classe"].ToString();
+                int id = Convert.ToInt32(reader["id_eleve"]);
                 int? id_equipe = reader["id_equipe"] != DBNull.Value ? Convert.ToInt32(reader["id_equipe"]) : null;
                 Eleve eleve = new Eleve(nom_eleve, classe);
+                eleve.Id = id;
                 if (id_equipe.HasValue) eleve.IdEquipe = id_equipe.Value;
                 eleves.Add(eleve);
             }

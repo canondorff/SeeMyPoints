@@ -5,6 +5,7 @@ public class Eleve
     string nomEleve;
     string classeEleve;
     
+    public int Id { get; set; }
     
     public Eleve(string nom, string classe)
     {
