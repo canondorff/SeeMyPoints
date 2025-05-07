@@ -5,18 +5,17 @@ namespace SeeMyPoints;
 
 public class ADOEquipe : ADO
 {
-    public static void insertEquipe(Equipe equipe)
+    public static int insertEquipe(Equipe equipe)
     {
         OpenSqlConnection();
         SqlCommand command;
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        string sql = "";
-        sql = $"INSERT INTO Equipe (nom_equipe, score) VALUES ('{equipe.Nom}', '{equipe.Score}')";
+        string sql = $"INSERT INTO Equipe (nom_equipe, score) VALUES ('{equipe.Nom}', '{equipe.Score}'); SELECT SCOPE_IDENTITY();";
         command = new SqlCommand(sql, cnn);
-        adapter.InsertCommand = new SqlCommand(sql, cnn);
-        adapter.InsertCommand.ExecuteNonQuery();
+        int newId = Convert.ToInt32(command.ExecuteScalar());
+        equipe.Id = newId;
         command.Dispose();
         closeSqlConnection();
+        return newId;
     }
     
     public static List<Equipe> GetAllEquipes()

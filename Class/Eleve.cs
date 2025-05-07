@@ -22,4 +22,6 @@ public class Eleve
     {
         get => classeEleve; 
     }
+
+    public int IdEquipe { get; set; }
 }

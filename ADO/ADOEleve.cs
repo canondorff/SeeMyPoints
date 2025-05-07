@@ -8,14 +8,13 @@ public class ADOEleve : ADO
     public static void insertEleve(Eleve eleve)
     {
         OpenSqlConnection();
-        SqlCommand command;
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        string sql = "";
-        sql = $"INSERT INTO Eleve (nom_eleve, classe) VALUES ('{eleve.Nom}', '{eleve.Classe}')";
-        command = new SqlCommand(sql, cnn);
-        adapter.InsertCommand = new SqlCommand(sql, cnn);
-        adapter.InsertCommand.ExecuteNonQuery();
-        command.Dispose();
+        string sql = "INSERT INTO eleve (nom_eleve, classe) VALUES (@nom, @classe)";
+        using (SqlCommand command = new SqlCommand(sql, cnn))
+        {
+            command.Parameters.AddWithValue("@nom", eleve.Nom);
+            command.Parameters.AddWithValue("@classe", eleve.Classe);
+            command.ExecuteNonQuery();
+        }
         closeSqlConnection();
     }
     
@@ -24,7 +23,7 @@ public class ADOEleve : ADO
         OpenSqlConnection();
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
-        string sql = "SELECT * FROM Eleve";
+        string sql = "SELECT * FROM eleve";
         command = new SqlCommand(sql, cnn);
         List<Eleve> eleves = new List<Eleve>();
 
@@ -34,7 +33,9 @@ public class ADOEleve : ADO
             {
                 string nom_eleve = reader["nom_eleve"].ToString();
                 string classe = reader["classe"].ToString();
+                int? id_equipe = reader["id_equipe"] != DBNull.Value ? Convert.ToInt32(reader["id_equipe"]) : null;
                 Eleve eleve = new Eleve(nom_eleve, classe);
+                if (id_equipe.HasValue) eleve.IdEquipe = id_equipe.Value;
                 eleves.Add(eleve);
             }
         }
@@ -49,7 +50,7 @@ public class ADOEleve : ADO
             OpenSqlConnection();
             SqlCommand command;
             SqlDataAdapter adapter = new SqlDataAdapter();
-            string sql = $"SELECT * FROM Eleve WHERE id_eleve = '{id_eleve}'";
+            string sql = $"SELECT * FROM eleve WHERE id_eleve = '{id_eleve}'";
             command = new SqlCommand(sql, cnn);
             Eleve eleve = null;
             using (SqlDataReader reader = command.ExecuteReader())
@@ -69,14 +70,15 @@ public class ADOEleve : ADO
         public static void updateEleve(Eleve eleve, int id_eleve)
         {
             OpenSqlConnection();
-            SqlCommand command;
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            string sql = "";
-            sql = $"UPDATE Eleve SET nom_eleve = '{eleve.Nom}', classe = '{eleve.Classe}' WHERE id_eleve = '{id_eleve}'";
-            command = new SqlCommand(sql, cnn);
-            adapter.UpdateCommand = new SqlCommand(sql, cnn);
-            adapter.UpdateCommand.ExecuteNonQuery();
-            command.Dispose();
+            string sql = "UPDATE eleve SET nom_eleve = @nom, classe = @classe, id_equipe = @idEquipe WHERE id_eleve = @idEleve";
+            using (SqlCommand command = new SqlCommand(sql, cnn))
+            {
+                command.Parameters.AddWithValue("@nom", eleve.Nom);
+                command.Parameters.AddWithValue("@classe", eleve.Classe);
+                command.Parameters.AddWithValue("@idEquipe", eleve.IdEquipe > 0 ? (object)eleve.IdEquipe : DBNull.Value);
+                command.Parameters.AddWithValue("@idEleve", id_eleve);
+                command.ExecuteNonQuery();
+            }
             closeSqlConnection();
         }
         
@@ -86,7 +88,7 @@ public class ADOEleve : ADO
             SqlCommand command;
             SqlDataAdapter adapter = new SqlDataAdapter();
             string sql = "";
-            sql = $"DELETE FROM Eleve WHERE id_eleve = '{id_eleve}'";
+            sql = $"DELETE FROM eleve WHERE id_eleve = '{id_eleve}'";
             command = new SqlCommand(sql, cnn);
             adapter.DeleteCommand = new SqlCommand(sql, cnn);
             adapter.DeleteCommand.ExecuteNonQuery();
